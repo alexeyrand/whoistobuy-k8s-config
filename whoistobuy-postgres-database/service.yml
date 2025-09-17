@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-database
+  labels:
+    app: postgres-database
+spec:
+  type: NodePort
+  ports:
+    - port: 5430
+  selector:
+    app: postgres-database

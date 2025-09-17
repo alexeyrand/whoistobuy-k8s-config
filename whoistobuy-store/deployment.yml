@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoistobuy-store
+  labels:
+    app: whoistobuy-store
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whoistobuy-store
+  template:
+    metadata:
+      labels:
+        app: whoistobuy-store
+    spec:
+      containers:
+        - name: whoistobuy-store-container
+          image: sha256:26e5a99fc00cdcbcdf367205063a471384dbd7f3ec31ed045e3a686287688f83
+          ports:
+            - containerPort: 8081
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-database:5430/witb
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: postgres

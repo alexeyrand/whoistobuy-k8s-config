@@ -15,8 +15,8 @@ spec:
         app: whoistobuy-store
     spec:
       containers:
-        - name: whoistobuy-store-container
-          image: sha256:26e5a99fc00cdcbcdf367205063a471384dbd7f3ec31ed045e3a686287688f83
+        - name: whoistobuy-store
+          image: alexeyrand/whoistobuy-store
           ports:
             - containerPort: 8081
           env:

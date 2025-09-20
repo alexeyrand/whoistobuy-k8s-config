@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoistobuy-telegram
+spec:
+  selector:
+    app: whoistobuy-telegram
+  ports:
+    - protocol: TCP
+      port: 8082          # К сервису можно обращаться по порту 8081
+      targetPort: 8082    # Сервис перенаправит трафик на порт 8081 контейнера
+  type: LoadBalancer      # Cloud-провайдер создаст внешний LB для доступа к сервису

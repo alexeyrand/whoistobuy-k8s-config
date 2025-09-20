@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoistobuy-telegram
+  labels:
+    app: whoistobuy-telegram
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whoistobuy-telegram
+  template:
+    metadata:
+      labels:
+        app: whoistobuy-telegram
+    spec:
+      containers:
+        - name: whoistobuy-telegram
+          image: alexeyrand/whoistobuy-telegram
+          ports:
+            - containerPort: 8082

@@ -8,8 +8,8 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 5430
-      targetPort: 5430
+      port: 5432
+      targetPort: 5432
 
   selector:
     app: postgres-database

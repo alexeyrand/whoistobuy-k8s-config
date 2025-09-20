@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: springboot-service
+  name: whoistobuy-store
 spec:
   selector:
-    app: springboot-app
+    app: whoistobuy-store
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: LoadBalancer
+      port: 8081          # К сервису можно обращаться по порту 8081
+      targetPort: 8081    # Сервис перенаправит трафик на порт 8081 контейнера
+  type: LoadBalancer      # Cloud-провайдер создаст внешний LB для доступа к сервису

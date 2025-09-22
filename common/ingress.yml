@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoistobuy-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  rules:
+    # Правило для API (Store)
+    - http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: whoistobuy-store
+                port:
+                  number: 80
+
+    # Правило для Telegram Bot
+    - http:
+        paths:
+          - path: /telegram
+            pathType: Prefix
+            backend:
+              service:
+                name: whoistobuy-telegram
+                port:
+                  number: 80

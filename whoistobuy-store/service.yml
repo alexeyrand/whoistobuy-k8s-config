@@ -2,11 +2,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: whoistobuy-store
+  namespace: default
 spec:
   selector:
     app: whoistobuy-store
   ports:
     - protocol: TCP
-      port: 8081          # К сервису можно обращаться по порту 8081
+      port: 80          # К сервису можно обращаться по порту 80
       targetPort: 8081    # Сервис перенаправит трафик на порт 8081 контейнера
-  type: LoadBalancer      # Cloud-провайдер создаст внешний LB для доступа к сервису
+  type: ClusterIP       # Cloud-провайдер создаст внешний LB для доступа к сервису

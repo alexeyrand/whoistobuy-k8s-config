@@ -19,3 +19,6 @@ spec:
           image: alexeyrand/whoistobuy-telegram
           ports:
             - containerPort: 8082
+          env:
+            - name: REDIS_PASSWORD
+              value: "mysecretpassword"

@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoistobuy-auth
+  labels:
+    app: whoistobuy-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: whoistobuy-auth
+  template:
+    metadata:
+      labels:
+        app: whoistobuy-auth
+    spec:
+      containers:
+        - name: whoistobuy-auth
+          image: alexeyrand/whoistobuy-auth
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REDIS_PASSWORD
+              value: "mysecretpassword"

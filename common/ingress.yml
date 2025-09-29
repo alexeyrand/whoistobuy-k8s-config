@@ -3,13 +3,31 @@ kind: Ingress
 metadata:
   name: whoistobuy-ingress
   namespace: default
+  annotations:
+    # Включаем JWT проверку для защищенных путей
+    nginx.ingress.kubernetes.io/auth-type: jwt
+    nginx.ingress.kubernetes.io/auth-jwt-key: "jwt-secret"
+    nginx.ingress.kubernetes.io/auth-jwt-verify-key: "$secret_key"
+    nginx.ingress.kubernetes.io/auth-jwt-algorithm: "HS256"
+    # Отключаем JWT для эндпоинтов аутентификации
+    nginx.ingress.kubernetes.io/auth-jwt-path-by-pass: "/auth/api/auth/sms/send /auth/api/auth/sms/verify"
 spec:
   ingressClassName: nginx
   rules:
+    # Правило для auth (без JWT проверки)
+    - http:
+        paths:
+          - path: /auth
+            pathType: Prefix
+            backend:
+              service:
+                name: whoistobuy-auth
+                port:
+                  number: 80
     # Правило для API (Store)
     - http:
         paths:
-          - path: /api
+          - path: /store
             pathType: Prefix
             backend:
               service:

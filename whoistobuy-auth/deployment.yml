@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: whoistobuy-auth
-          image: alexeyrand/whoistobuy-auth
+          image: alexeyrand/whoistobuy-auth:latest
           ports:
             - containerPort: 8080
           env:
